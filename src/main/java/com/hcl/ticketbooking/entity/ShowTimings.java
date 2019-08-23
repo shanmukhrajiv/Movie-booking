@@ -1,7 +1,6 @@
 package com.hcl.ticketbooking.entity;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +19,7 @@ public class ShowTimings {
 
 	private Integer showTimingsId;
 	private Integer theatreId;
-	private LocalDateTime showTime;
+	private String showTime;
 	private Integer movieId;
 	private LocalDate showDate;
 	
