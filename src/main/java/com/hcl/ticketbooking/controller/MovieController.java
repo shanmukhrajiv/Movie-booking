@@ -39,14 +39,14 @@ public class MovieController {
 	}
 
 	@PostMapping("/movies/book")
-	public ResponseEntity<BookingResponse> Booking(@RequestBody BookingInput bookingInput) {
-		return bookingService.Booking(bookingInput);
+	public ResponseEntity<BookingResponse> booking(@RequestBody BookingInput bookingInput) {
+		return bookingService.booking(bookingInput);
 
 	}
 
 	@PutMapping("/movies/book")
-	public ResponseEntity<ResponseDto> BookingStatusUpdate(@RequestBody BookingStatusUpdateInput bookingStatusUpdateInput) {
-		return bookingService.BookingStatusUpdate(bookingStatusUpdateInput);
+	public ResponseEntity<ResponseDto> bookingStatusUpdate(@RequestBody BookingStatusUpdateInput bookingStatusUpdateInput) {
+		return bookingService.bookingStatusUpdate(bookingStatusUpdateInput);
 
 	}
 

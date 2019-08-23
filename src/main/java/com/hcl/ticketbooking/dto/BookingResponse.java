@@ -10,5 +10,7 @@ public class BookingResponse {
 	private Integer statusCode;
 	private String message;
 	private Integer bookingId;
+	private Integer price;
+
 
 }

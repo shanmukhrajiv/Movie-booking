@@ -32,7 +32,7 @@ public class BookingServiceImpl implements BookingService {
 	BookingRepository bookingRepository;
 
 	@Override
-	public ResponseEntity<BookingResponse> Booking(BookingInput bookingInput) {
+	public ResponseEntity<BookingResponse> booking(BookingInput bookingInput) {
 
 //		
 		Booking booking = new Booking();
@@ -51,7 +51,7 @@ public class BookingServiceImpl implements BookingService {
 		booking.setName(bookingInput.getName());
 		booking.setStatus(EbookingStatus.PENDING.name());
 		booking.setBookedSeats(bookingInput.getNoOfSeats());
-		booking.setTheatreSeatId(theatreSeat.get(0).getTheatreSeatId());
+		booking.setTheatreSeatId(theatreSeat.get(0).getTheatreSeatId()); 
  
 		
 		bookingRepository.save(booking);
@@ -62,13 +62,14 @@ public class BookingServiceImpl implements BookingService {
 		BookingResponse bookingResponse = new BookingResponse();
 		bookingResponse.setBookingId(booking.getBookingId());
 		bookingResponse.setMessage("booking succsess"); 
+		bookingResponse.setPrice(booking.getAmount());
 		bookingResponse.setStatusCode(HttpStatus.CREATED.value());
 		return ResponseEntity.status(HttpStatus.CREATED).body(bookingResponse);
 
 	}
 
 	@Override
-	public ResponseEntity<ResponseDto> BookingStatusUpdate(BookingStatusUpdateInput bookingStatusUpdateInput) {
+	public ResponseEntity<ResponseDto> bookingStatusUpdate(BookingStatusUpdateInput bookingStatusUpdateInput) {
 		Optional<Booking> booking = bookingRepository.findById(bookingStatusUpdateInput.getBookingId());
 
 		if (!booking.isPresent())

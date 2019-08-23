@@ -18,7 +18,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		responseDto.setMessage(ex.getMessage());
 		responseDto.setStatusCode(401);
 
-		return new ResponseEntity<>(responseDto, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(responseDto, HttpStatus.UNAUTHORIZED);
 
 	}
 

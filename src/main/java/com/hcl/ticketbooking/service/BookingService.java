@@ -9,8 +9,8 @@ import com.hcl.ticketbooking.dto.ResponseDto;
 
 public interface BookingService {
 	
-	public ResponseEntity<BookingResponse> Booking(BookingInput bookingInput);
-	public ResponseEntity<ResponseDto> BookingStatusUpdate(BookingStatusUpdateInput bookingStatusUpdateInput);
+	public ResponseEntity<BookingResponse> booking(BookingInput bookingInput);
+	public ResponseEntity<ResponseDto> bookingStatusUpdate(BookingStatusUpdateInput bookingStatusUpdateInput);
 
 
 }
