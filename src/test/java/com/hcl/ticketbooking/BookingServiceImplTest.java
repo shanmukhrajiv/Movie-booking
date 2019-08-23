@@ -96,10 +96,41 @@ public class BookingServiceImplTest {
 	public void BookingTest() {
 		Mockito.when(theatreSeatRepository.findByShowTimingId(Mockito.anyInt())).thenReturn(theatreSeatList);
 		// Mockito.when(bookingRepository.save(booking)).thenReturn(booking);
+		
+		Mockito.when(theatreSeatRepository.save(theatreSeat)).thenReturn(theatreSeat);
+
 
 		ResponseEntity<BookingResponse> actual = bookingServiceImpl.Booking(bookingInput);
 
 		Assert.assertEquals(HttpStatus.CREATED.value(), actual.getStatusCodeValue());
+
+	}
+	
+	@Test(expected = MovieException.class)
+	public void BookingTestNegative() {
+//		Mockito.when(theatreSeatRepository.findByShowTimingId(Mockito.anyInt())).thenReturn(theatreSeatList);
+		// Mockito.when(bookingRepository.save(booking)).thenReturn(booking);
+		
+//		Mockito.when(theatreSeatRepository.save(theatreSeat)).thenReturn(theatreSeat);
+
+
+		ResponseEntity<BookingResponse> actual = bookingServiceImpl.Booking(bookingInput);
+
+
+	}
+	
+	
+	@Test(expected = MovieException.class)
+	public void BookingTestNegative2() {
+		theatreSeat.setAvailableSeats(1);
+		Mockito.when(theatreSeatRepository.findByShowTimingId(Mockito.anyInt())).thenReturn(theatreSeatList);
+		// Mockito.when(bookingRepository.save(booking)).thenReturn(booking);
+		
+//		Mockito.when(theatreSeatRepository.save(theatreSeat)).thenReturn(theatreSeat);
+
+
+		ResponseEntity<BookingResponse> actual = bookingServiceImpl.Booking(bookingInput);
+
 
 	}
 
@@ -119,17 +150,17 @@ public class BookingServiceImplTest {
 	public void BookingStatusUpdateTestNegative() {
 
 //		Mockito.when(bookingRepository.findById(Mockito.anyInt())).thenReturn(Optional.of(booking));
-		Mockito.when(bookingRepository.save(booking)).thenReturn(booking);
+//		Mockito.when(bookingRepository.save(booking)).thenReturn(booking);
 
 		bookingServiceImpl.BookingStatusUpdate(bookingStatusUpdateInput);
 
-	}
+	} 
 
 	@Test(expected = MovieException.class)
 	public void BookingStatusUpdateTestNegative2() {
 		bookingStatusUpdateInput.setStatus("aydfgih");
 		Mockito.when(bookingRepository.findById(Mockito.anyInt())).thenReturn(Optional.of(booking));
-		Mockito.when(bookingRepository.save(booking)).thenReturn(booking);
+//		Mockito.when(bookingRepository.save(booking)).thenReturn(booking);
 
 		bookingServiceImpl.BookingStatusUpdate(bookingStatusUpdateInput);
 

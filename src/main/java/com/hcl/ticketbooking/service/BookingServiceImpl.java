@@ -39,15 +39,25 @@ public class BookingServiceImpl implements BookingService {
 
 		List<TheatreSeat> theatreSeat = theatreSeatRepository.findByShowTimingId(bookingInput.getShowTimingId());
 
+		if(theatreSeat.isEmpty())
+			throw new MovieException("no show availabe");
+		
+		if(theatreSeat.get(0).getAvailableSeats()<bookingInput.getNoOfSeats())
+			throw new MovieException("all seats are filled");
+
+		
 		booking.setAmount((bookingInput.getNoOfSeats() * theatreSeat.get(0).getPrice()));
 		booking.setEmail(bookingInput.getEmail());
 		booking.setName(bookingInput.getName());
 		booking.setStatus(EbookingStatus.PENDING.name());
 		booking.setBookedSeats(bookingInput.getNoOfSeats());
 		booking.setTheatreSeatId(theatreSeat.get(0).getTheatreSeatId());
-
+ 
 		
 		bookingRepository.save(booking);
+		
+		theatreSeat.get(0).setAvailableSeats(theatreSeat.get(0).getAvailableSeats()-bookingInput.getNoOfSeats());
+		theatreSeatRepository.save(theatreSeat.get(0));
 
 		BookingResponse bookingResponse = new BookingResponse();
 		bookingResponse.setBookingId(booking.getBookingId());
