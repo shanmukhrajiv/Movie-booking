@@ -20,7 +20,7 @@ public class ShowTimings {
 
 	private Integer showTimingsId;
 	private Integer theatreId;
-	private LocalDateTime showTime;
+	private String showTime;
 	private Integer movieId;
 	private LocalDate showDate;
 	

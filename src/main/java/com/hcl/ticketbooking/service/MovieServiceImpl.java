@@ -27,10 +27,7 @@ public class MovieServiceImpl implements MovieService {
 			MovieDTO movieDTO = new MovieDTO();
 			movieDTO.setMovieId(movie.getMovieId());
 			movieDTO.setMovieName(movie.getMovieName());
-			/*
-			 * movieDTO.setMovieLanguage(movie.getMovieLanguage());
-			 * movieDTO.setMovieRunningTime(movie.getMovieRunningTime());
-			 */ movieDTOList.add(movieDTO);
+			movieDTOList.add(movieDTO);
 
 		}
 
