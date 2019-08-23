@@ -34,7 +34,11 @@ public class ShowTimingServiceImpl implements ShowTimingService{
 			
 			ShowTimingDetailsDto showTimingDetailsDto = new ShowTimingDetailsDto();
 			Theatre theatre = theatreRepository.findByTheatreId(show.getMovieId());
-			TheatreSeat theatreSeat = theatreSeatRepository.findByShowTimingId(show.getShowTimingsId());
+			List<TheatreSeat> theatreSeats = theatreSeatRepository.findByShowTimingId(show.getShowTimingsId());
+			
+			try {
+			TheatreSeat theatreSeat = theatreSeats.get(0);
+			
 			showTimingDetailsDto.setShowTime(show.getShowTime());
 			if(theatreSeat!=null) {
 				showTimingDetailsDto.setAvailableSeats(theatreSeat.getAvailableSeats());
@@ -46,6 +50,9 @@ public class ShowTimingServiceImpl implements ShowTimingService{
 			showTimingDetailsDto.setTheatreId(theatre.getTheatreId());
 			showTimingDetailsDto.setTheatreName(theatre.getTheatreName());
 			showTimingDetailsDtos.add(showTimingDetailsDto);
+			}catch (Exception e) {
+				// TODO: handle exception
+			}
 		}
 		
 		return showTimingDetailsDtos;
