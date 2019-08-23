@@ -36,10 +36,13 @@ public class ShowTimingServiceImpl implements ShowTimingService{
 			Theatre theatre = theatreRepository.findByTheatreId(show.getMovieId());
 			TheatreSeat theatreSeat = theatreSeatRepository.findByShowTimingId(show.getShowTimingsId());
 			showTimingDetailsDto.setShowTime(show.getShowTime());
-			if(theatreSeat.getAvailableSeats()!=0) {
+			if(theatreSeat!=null) {
 				showTimingDetailsDto.setAvailableSeats(theatreSeat.getAvailableSeats());
 			}
-			showTimingDetailsDto.setAvailableSeats(0);
+			else {
+				showTimingDetailsDto.setAvailableSeats(0);
+			}
+			showTimingDetailsDto.setShowTimingId(show.getShowTimingsId());
 			showTimingDetailsDto.setTheatreId(theatre.getTheatreId());
 			showTimingDetailsDto.setTheatreName(theatre.getTheatreName());
 			showTimingDetailsDtos.add(showTimingDetailsDto);
