@@ -6,6 +6,9 @@ import org.springframework.stereotype.Repository;
 import com.hcl.ticketbooking.entity.Theatre;
 
 @Repository
+
 public interface TheatreRepository extends JpaRepository<Theatre, Integer> {
+
+	public Theatre findByTheatreId(Integer movieId);
 
 }
