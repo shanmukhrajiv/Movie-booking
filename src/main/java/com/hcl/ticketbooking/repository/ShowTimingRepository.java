@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.hcl.ticketbooking.entity.TheatreSeat;
+import com.hcl.ticketbooking.entity.ShowTimings;
 
 @Repository
-public interface TheatreSeatRepository extends JpaRepository<TheatreSeat, Integer> {
+public interface ShowTimingRepository extends JpaRepository<ShowTimings, Long>{
 
-	List<TheatreSeat> findByShowTimingId(Integer showtimingid);
+	public List<ShowTimings> findByMovieId(Integer movieId);
 
 }

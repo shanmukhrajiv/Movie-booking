@@ -12,8 +12,20 @@ import com.hcl.ticketbooking.dto.ResponseDto;
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
+	@ExceptionHandler(WrongBookingId.class)
+	public ResponseEntity<ResponseDto> ecomorseExceptionHandler(WrongBookingId ex, WebRequest request) {
+		ResponseDto responseDto = new ResponseDto();
+
+		responseDto.setMessage(ex.getMessage());
+		responseDto.setStatusCode(401);
+
+		return new ResponseEntity<>(responseDto, HttpStatus.NOT_FOUND);
+
+	}
+
 	@ExceptionHandler(MovieException.class)
 	public ResponseEntity<ResponseDto> ecomorseExceptionHandler(MovieException ex, WebRequest request) {
+
 		ResponseDto responseDto = new ResponseDto();
 		responseDto.setMessage(ex.getMessage());
 		responseDto.setStatusCode(401);
@@ -30,6 +42,5 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		return new ResponseEntity<>(responseDto, HttpStatus.NOT_FOUND);
 
 	}
-	
-	
+
 }
