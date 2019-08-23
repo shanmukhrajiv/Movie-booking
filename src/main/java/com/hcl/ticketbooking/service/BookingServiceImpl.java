@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.hcl.ticketbooking.dto.BookingInput;
-import com.hcl.ticketbooking.dto.BookingResponse;
+import com.hcl.ticketbooking.dto.BookingResponse; 
 import com.hcl.ticketbooking.dto.BookingStatusUpdateInput;
 import com.hcl.ticketbooking.dto.EbookingStatus;
 import com.hcl.ticketbooking.dto.ResponseDto;
@@ -46,11 +46,12 @@ public class BookingServiceImpl implements BookingService {
 		booking.setBookedSeats(bookingInput.getNoOfSeats());
 		booking.setTheatreSeatId(theatreSeat.get(0).getTheatreSeatId());
 
-		booking = bookingRepository.save(booking);
+		
+		bookingRepository.save(booking);
 
 		BookingResponse bookingResponse = new BookingResponse();
 		bookingResponse.setBookingId(booking.getBookingId());
-		bookingResponse.setMessage("booking succsess");
+		bookingResponse.setMessage("booking succsess"); 
 		bookingResponse.setStatusCode(HttpStatus.CREATED.value());
 		return ResponseEntity.status(HttpStatus.CREATED).body(bookingResponse);
 
