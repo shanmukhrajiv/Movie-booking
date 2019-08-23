@@ -9,7 +9,7 @@ public class BookingInput {
 	private Integer showTimingId;
 	private Integer noOfSeats;
 	private String name;
-	private Integer mobileNo;
+	private Long mobileNo;
 	private String email;
 	
 

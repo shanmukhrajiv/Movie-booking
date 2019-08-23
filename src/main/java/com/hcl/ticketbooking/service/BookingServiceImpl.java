@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import com.hcl.ticketbooking.dto.BookingInput;
 import com.hcl.ticketbooking.dto.BookingResponse;
@@ -19,6 +20,7 @@ import com.hcl.ticketbooking.repository.BookingRepository;
 import com.hcl.ticketbooking.repository.ShowTimingsRepository;
 import com.hcl.ticketbooking.repository.TheatreSeatRepository;
 
+@Service
 public class BookingServiceImpl implements BookingService {
 
 	@Autowired
@@ -61,16 +63,18 @@ public class BookingServiceImpl implements BookingService {
 		if (!booking.isPresent())
 			throw new MovieException("no booking available");
 
-		booking.get().setStatus(bookingStatusUpdateInput.getStatus());
+		if ((!EbookingStatus.BOOKED.name().equalsIgnoreCase(bookingStatusUpdateInput.getStatus()))
+				&& (!EbookingStatus.CANCEL.name().equalsIgnoreCase(bookingStatusUpdateInput.getStatus())))
+			throw new MovieException("status miss match");
+
+		booking.get().setStatus(bookingStatusUpdateInput.getStatus().toUpperCase());
 
 		bookingRepository.save(booking.get());
-		
-		ResponseDto responseDto=new ResponseDto();
-		responseDto.setMessage("");
+
+		ResponseDto responseDto = new ResponseDto();
+		responseDto.setMessage(bookingStatusUpdateInput.getStatus().toUpperCase()+"  succsessfully");
 		responseDto.setStatusCode(HttpStatus.CREATED.value());
 		return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
-		
-		
 
 	}
 
