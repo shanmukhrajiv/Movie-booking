@@ -1,6 +1,5 @@
 package com.hcl.ticketbooking.controller;
 
-import static org.junit.Assert.fail;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.Before;

@@ -114,7 +114,7 @@ public class BookingServiceImplTest {
 //		Mockito.when(theatreSeatRepository.save(theatreSeat)).thenReturn(theatreSeat);
 
 
-		ResponseEntity<BookingResponse> actual = bookingServiceImpl.booking(bookingInput);
+		 bookingServiceImpl.booking(bookingInput);
 
 
 	}
@@ -129,7 +129,7 @@ public class BookingServiceImplTest {
 //		Mockito.when(theatreSeatRepository.save(theatreSeat)).thenReturn(theatreSeat);
 
 
-		ResponseEntity<BookingResponse> actual = bookingServiceImpl.booking(bookingInput);
+		 bookingServiceImpl.booking(bookingInput);
 
 
 	}

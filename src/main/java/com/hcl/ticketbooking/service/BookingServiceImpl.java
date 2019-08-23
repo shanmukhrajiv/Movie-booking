@@ -30,7 +30,7 @@ public class BookingServiceImpl implements BookingService {
 
 	@Autowired
 	BookingRepository bookingRepository;
-
+ 
 	@Override
 	public ResponseEntity<BookingResponse> booking(BookingInput bookingInput) {
 
@@ -54,13 +54,13 @@ public class BookingServiceImpl implements BookingService {
 		booking.setTheatreSeatId(theatreSeat.get(0).getTheatreSeatId()); 
  
 		
-		bookingRepository.save(booking);
+		Booking booking2 = bookingRepository.save(booking);
 		
 		theatreSeat.get(0).setAvailableSeats(theatreSeat.get(0).getAvailableSeats()-bookingInput.getNoOfSeats());
 		theatreSeatRepository.save(theatreSeat.get(0));
 
 		BookingResponse bookingResponse = new BookingResponse();
-		bookingResponse.setBookingId(booking.getBookingId());
+		bookingResponse.setBookingId(booking2.getBookingId());
 		bookingResponse.setMessage("booking succsess"); 
 		bookingResponse.setPrice(booking.getAmount());
 		bookingResponse.setStatusCode(HttpStatus.CREATED.value());
@@ -81,7 +81,7 @@ public class BookingServiceImpl implements BookingService {
 
 		booking.get().setStatus(bookingStatusUpdateInput.getStatus().toUpperCase());
 
-		bookingRepository.save(booking.get());
+		 bookingRepository.save(booking.get());
 
 		ResponseDto responseDto = new ResponseDto();
 		responseDto.setMessage(bookingStatusUpdateInput.getStatus().toUpperCase()+"  succsessfully");

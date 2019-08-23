@@ -21,7 +21,7 @@ public class BookingDetailsController {
 	@GetMapping("/movie/book/{bookingId}")
 	public ResponseEntity<BookingDetailsDTO> bookingDetails(@PathVariable Integer bookingId) {
 
-		return new ResponseEntity<BookingDetailsDTO>(bookingDetailsServiceImpl.bookingDetails(bookingId),
+		return new ResponseEntity<>(bookingDetailsServiceImpl.bookingDetails(bookingId),
 				HttpStatus.OK);
 
 	}

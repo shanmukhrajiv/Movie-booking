@@ -38,6 +38,7 @@ public class BookingDetailsServiceImpl implements BookingDetailsService {
 
 	@Override
 	public BookingDetailsDTO bookingDetails(Integer bookingId) {
+		
 
 		BookingDetailsDTO bookingDetailsDTO = new BookingDetailsDTO();
 
@@ -83,7 +84,7 @@ public class BookingDetailsServiceImpl implements BookingDetailsService {
 							bookingDetailsDTO.setTheatreName(threatre.getTheatreName());
 
 						}
-
+ 
 					}
 
 				}

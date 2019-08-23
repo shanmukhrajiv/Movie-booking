@@ -1,7 +1,6 @@
 package com.hcl.ticketbooking.service;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -175,7 +174,7 @@ public class BookingDetailsServiceImplTest {
 
 		Mockito.when(theatreRepository.findById(Mockito.anyInt())).thenReturn(Optional.of(theatre));
 
-		BookingDetailsDTO actualValue = bookingDetailsServiceImpl.bookingDetails(booking.getBookingId());
+		bookingDetailsServiceImpl.bookingDetails(booking.getBookingId());
 
 		//assertEquals(bookingDetailsDTO.getMovieName(), actualValue.getMovieName());
 
